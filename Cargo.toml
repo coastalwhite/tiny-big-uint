@@ -1,0 +1,31 @@
+[package]
+name = "tiny-big-uint"
+version = "1.0.0"
+authors = ["Gijs Burghoorn <me@gburghoorn.com>"]
+
+categories = ["data-structures"]
+keywords = ["bigint", "embedded", "unsigned", "integer", "number"]
+
+repository = "https://github.com/coastalwhite/tiny-big-uint"
+homepage = "https://github.com/coastalwhite/tiny-big-uint"
+
+description = """\
+An minimal, no heap, no_std implementation of big unsigned integers using const\
+generics.\
+"""
+
+edition = "2018"
+
+readme = "README.md"
+license = "MIT or APACHE-2.0"
+
+[features]
+
+16bit = []
+32bit = []
+64bit = []
+
+downcasting = []
+upcasting = []
+
+bytearrays = []
