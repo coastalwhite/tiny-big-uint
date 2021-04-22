@@ -4,19 +4,19 @@ use core::ops::{Div, DivAssign, Mul, MulAssign, Rem, RemAssign};
 impl<const NUM_WORDS: usize> Mul<Self> for BigUInt<NUM_WORDS> {
     type Output = Self;
     fn mul(self, mut rhs: Self) -> Self::Output {
-        // TLDR: Multiplying is repeated addition
-        // I know :(
-        
         let mut big_int = BigUInt::MIN;
+        let mut shifted = 0;
 
-        loop {
-            if rhs.is_zero() {
-                break big_int;
+        while !rhs.is_zero() {
+            if !rhs.is_even() {
+                big_int += self.clone() << shifted;
             }
-            rhs = rhs.decrease();
 
-            big_int = big_int + self.clone();
+            shifted += 1;
+            rhs >>= 1;
         }
+
+        big_int
     }
 }
 impl<const NUM_WORDS: usize> Div<Self> for BigUInt<NUM_WORDS> {
@@ -24,7 +24,7 @@ impl<const NUM_WORDS: usize> Div<Self> for BigUInt<NUM_WORDS> {
     fn div(mut self, rhs: Self) -> Self::Output {
         // TLDR: Dividing is a counter of repeated subtraction
         // Again, I know :(
-        
+
         let mut big_int = BigUInt::MIN;
 
         loop {
@@ -42,7 +42,7 @@ impl<const NUM_WORDS: usize> Rem<Self> for BigUInt<NUM_WORDS> {
     fn rem(mut self, rhs: Self) -> Self::Output {
         // TLDR: Modulo is repeated subtraction
         // Once again, I know :(
-        
+
         loop {
             if rhs > self {
                 break self;
