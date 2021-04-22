@@ -11,6 +11,12 @@ test-all:
 	cargo test --features 32bit --lib
 	cargo test --features 64bit --lib
 
-pre-publish: test
+benchmark:
+	cargo bench --features upcasting,downcasting,bytearrays
+	cargo bench --features 16bit,upcasting,downcasting,bytearrays
+	cargo bench --features 32bit,upcasting,downcasting,bytearrays
+	cargo bench --features 64bit,upcasting,downcasting,bytearrays
+
+pre-publish: test benchmark
 	cargo sync-readme
 	cargo deadlinks
