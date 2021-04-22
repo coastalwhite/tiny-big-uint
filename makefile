@@ -12,10 +12,10 @@ test-all:
 	cargo test --features 64bit --lib
 
 benchmark:
-	cargo bench --features upcasting,downcasting,bytearrays
-	cargo bench --features 16bit,upcasting,downcasting,bytearrays
-	cargo bench --features 32bit,upcasting,downcasting,bytearrays
-	cargo bench --features 64bit,upcasting,downcasting,bytearrays
+	cargo bench --features upcasting
+	cargo bench --features upcasting,16bit
+	cargo bench --features upcasting,32bit
+	cargo bench --features upcasting,64bit
 
 pre-publish: test benchmark
 	cargo sync-readme

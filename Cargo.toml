@@ -29,3 +29,11 @@ downcasting = []
 upcasting = []
 
 bytearrays = []
+
+[dev-dependencies]
+criterion = "0.3"
+
+[[bench]]
+name = "mul"
+required-features = ["upcasting"]
+harness = false
