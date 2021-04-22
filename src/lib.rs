@@ -105,6 +105,8 @@
 #![cfg_attr(not(test), no_std)]
 #![warn(missing_docs)]
 
+#![feature(test)]
+
 mod add_sub;
 mod bitwise_ops;
 #[cfg(any(feature = "bytearrays", test))]
@@ -204,6 +206,11 @@ impl<const NUM_WORDS: usize> BigUInt<NUM_WORDS> {
 
         true
     }
+
+    /// Returns whether the given BigUInt is even
+    pub fn is_even(&self) -> bool {
+        self.internal[0] % 2 == 0
+    }
 }
 
 use core::cmp::{Ord, Ordering};
@@ -258,5 +265,14 @@ mod tests {
         assert!(<BigUInt<128>>::from(0u32).is_zero());
         assert!(!<BigUInt<128>>::from(1u32).is_zero());
         assert!(!<BigUInt<128>>::from(321u32).is_zero());
+    }
+
+    #[test]
+    fn is_even() {
+        assert!(<BigUInt<128>>::MIN.is_even());
+        assert!(<BigUInt<128>>::from(0u32).is_even());
+        assert!(!<BigUInt<128>>::from(1u32).is_zero());
+        assert!(!<BigUInt<128>>::from(321u32).is_even());
+        assert!(<BigUInt<128>>::from(322u32).is_even());
     }
 }
