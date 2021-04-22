@@ -1,4 +1,4 @@
-use criterion::{black_box, criterion_group, criterion_main, Criterion};
+use criterion::{criterion_group, criterion_main, Criterion};
 use tiny_big_uint::BigUInt;
 
 #[cfg(not(any(feature = "16bit", feature = "32bit", feature = "64bit")))]
