@@ -18,7 +18,7 @@ word size, can be especially handy when working on very specific hardware.
 
 # Why use this crate?
 
-This crate is useful for when you don't want to utitize dynamic, but still need bigger than 128
+This crate is useful for when you don't want to utitize dynamic memory allocation, but still need bigger than 128
 bit unsigned integers. Mostly, this is used on low powered embedded hardware for example with
 encryption algorithms. Since const generics are now officially out, I felt it necessary to put
 that feature to good use.
